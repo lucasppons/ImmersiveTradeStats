@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44212845, g: 0.45032358, b: 0.47388604, a: 1}
+  m_IndirectSpecularColor: {r: 0.4420287, g: 0.45022067, b: 0.47379428, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -169,12 +169,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -688079362022053764, guid: 485d3d34536848c46a8e3545f945dc7a, type: 3}
       propertyPath: partner
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -688079362022053764, guid: 485d3d34536848c46a8e3545f945dc7a, type: 3}
       propertyPath: reporter
       value: 33
       objectReference: {fileID: 0}
+    - target: {fileID: -688079362022053764, guid: 485d3d34536848c46a8e3545f945dc7a, type: 3}
+      propertyPath: arcPrefab
+      value: 
+      objectReference: {fileID: 2164940178928021056, guid: b65d3b07c662bc08db77d9e853bd21b2, type: 3}
     - target: {fileID: -688079362022053764, guid: 485d3d34536848c46a8e3545f945dc7a, type: 3}
       propertyPath: markerPrefab
       value: 
@@ -338,11 +342,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2816376662077251008, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
       propertyPath: partner
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2816376662077251008, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
       propertyPath: reporter
       value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 2816376662077251008, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
+      propertyPath: arcPrefab
+      value: 
+      objectReference: {fileID: 2164940178928021056, guid: b65d3b07c662bc08db77d9e853bd21b2, type: 3}
+    - target: {fileID: 2816376662077251008, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
+      propertyPath: indicator
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2816376662077251008, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
       propertyPath: markerPrefab

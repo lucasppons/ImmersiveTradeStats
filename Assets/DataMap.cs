@@ -13,11 +13,33 @@ public abstract class DataMap : MonoBehaviour
     [SerializeField]
     protected Marker markerPrefab;
     
-    protected List<Marker> markers = new List<Marker>();
+    [SerializeField]
+    protected TradeArc arcPrefab;
+    
+    List<Marker> markers = new List<Marker>();
+    
+    Vector3 scale = new Vector3(1.0f, 1.0f, 1.0f);
     
     void Start() 
     {
         StartCoroutine(DatasetParser.QueryAPI(this));
+    }
+    
+    void Update()
+    {
+        Vector3 newScale = transform.localScale;
+        
+        if (newScale != scale) {
+            foreach (Marker marker in markers) {
+                marker.transform.localScale = new Vector3(
+                    marker.transform.localScale.x * scale.x / newScale.x, 
+                    marker.transform.localScale.y * scale.y / newScale.y, 
+                    marker.transform.localScale.z * scale.z / newScale.z
+                );
+            }
+            
+            scale = newScale;
+        }
     }
     
     public void ApiQueryCallback(List<DatasetPrimitives.Trade> trades) 
@@ -29,19 +51,28 @@ public abstract class DataMap : MonoBehaviour
         markers.Clear();
         
         foreach (DatasetPrimitives.Trade trade in trades) {
-            AddMarker(DatasetPrimitives.coords[trade.reporter]);
             AddMarker(DatasetPrimitives.coords[trade.partner]);
+            AddMarker(DatasetPrimitives.coords[trade.reporter]);
+            DrawArc(trade);
         }
     }
     
     void AddMarker(Vector2 coord)
     {
-        Marker marker = Instantiate(markerPrefab, MarkerPosition(coord), Quaternion.identity);
+        Marker marker = Instantiate(markerPrefab, transform);
         
-        marker.coord = coord;
+        marker.transform.localPosition = MarkerPosition(coord);
+        
+        marker.transform.localScale = new Vector3(
+            marker.transform.localScale.x / transform.localScale.x,
+            marker.transform.localScale.y / transform.localScale.y,
+            marker.transform.localScale.z / transform.localScale.z
+        );
         
         markers.Add(marker);
     }
     
     protected abstract Vector3 MarkerPosition(Vector2 coord);
+    
+    protected abstract void DrawArc(DatasetPrimitives.Trade trade);
 }

@@ -63,15 +63,19 @@ public class DatasetParser
             
             string[] indexers = entry.Key.Split(':');
             
-            trade.reporter = (DatasetPrimitives.Country)System.Enum.Parse(typeof(DatasetPrimitives.Country), reporters[int.Parse(indexers[reporterIndex])].id);
-            trade.partner = (DatasetPrimitives.Country)System.Enum.Parse(typeof(DatasetPrimitives.Country), partners[int.Parse(indexers[partnerIndex])].id);
-            trade.product = reverseProductStrings[products[int.Parse(indexers[productIndex])].id];
-            trade.indicator = reverseIndicatorStrings[indicators[int.Parse(indexers[indicatorIndex])].id];
-            trade.value = entry.Value.observations["0"][0];
-            
-            trades.Add(trade);            
-            
-            Debug.Log($"{trade.reporter} | {trade.partner} | {trade.product} | {trade.indicator} | {trade.value.ToString()}");
+            try {
+                trade.reporter = (DatasetPrimitives.Country)System.Enum.Parse(typeof(DatasetPrimitives.Country), reporters[int.Parse(indexers[reporterIndex])].id);
+                trade.partner = (DatasetPrimitives.Country)System.Enum.Parse(typeof(DatasetPrimitives.Country), partners[int.Parse(indexers[partnerIndex])].id);
+                trade.product = reverseProductStrings[products[int.Parse(indexers[productIndex])].id];
+                trade.indicator = reverseIndicatorStrings[indicators[int.Parse(indexers[indicatorIndex])].id];
+                trade.value = entry.Value.observations["0"][0];
+                
+                trades.Add(trade);            
+                
+                Debug.Log($"{trade.reporter} | {trade.partner} | {trade.product} | {trade.indicator} | {trade.value.ToString()}");
+            } catch (System.Exception e) {
+                Debug.Log(e.Message);
+            }
         }
         
         return trades;

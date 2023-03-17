@@ -3,19 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Globe : DataMap
-{
-    void Update()
-    {
-        foreach (Marker marker in markers) {
-            marker.transform.position = MarkerPosition(marker.coord);
-        }
-    }
-    
+{    
     protected override Vector3 MarkerPosition(Vector2 coord)
     {
         float radius = GetComponent<Renderer>().bounds.extents.x;
-        Vector3 position = transform.position;
-        Quaternion rotation = transform.localRotation;    
         
         float lon = coord.y * Mathf.PI / 180;
         float lat = coord.x * Mathf.PI / 180;
@@ -24,6 +15,19 @@ public class Globe : DataMap
         float y = Mathf.Cos(lat) * Mathf.Sin(lon);
         float z = Mathf.Sin(lat);
         
-        return rotation * new Vector3(x, z, y) * radius + position;
+        return new Vector3(x, z, y) * radius;
+    }
+    
+    protected override void DrawArc(DatasetPrimitives.Trade trade)
+    {
+        TradeArc arc = Instantiate(arcPrefab, transform);
+        
+        Vector3 from = MarkerPosition(DatasetPrimitives.coords[trade.partner]);
+        Vector3 to = MarkerPosition(DatasetPrimitives.coords[trade.reporter]);
+        Color color = (trade.indicator == DatasetPrimitives.Indicator.Import) ? Color.green : Color.red;
+        
+        float distance = Vector3.Distance(from, to);
+        
+        arc.Configure(from, to, distance / 1.85f, from + to, color);
     }
 }
