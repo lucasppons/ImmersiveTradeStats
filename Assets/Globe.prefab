@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4830142514150886067}
   - component: {fileID: -688079362022053764}
   m_Layer: 0
-  m_Name: globe
+  m_Name: Globe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

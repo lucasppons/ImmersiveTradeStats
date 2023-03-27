@@ -180,9 +180,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2164940178928021056, guid: b65d3b07c662bc08db77d9e853bd21b2, type: 3}
     - target: {fileID: -688079362022053764, guid: 485d3d34536848c46a8e3545f945dc7a, type: 3}
+      propertyPath: indicator
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -688079362022053764, guid: 485d3d34536848c46a8e3545f945dc7a, type: 3}
       propertyPath: markerPrefab
       value: 
-      objectReference: {fileID: -7802184210156373094, guid: 2c6d50a7792746847aecfec4fb52a031, type: 3}
+      objectReference: {fileID: -7559604829641386874, guid: 51e451ee3acd52c748fa990cb146fd8f, type: 3}
     - target: {fileID: 496970782896851281, guid: 485d3d34536848c46a8e3545f945dc7a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -229,7 +233,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 946120577202543686, guid: 485d3d34536848c46a8e3545f945dc7a, type: 3}
       propertyPath: m_Name
-      value: globe
+      value: Globe
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830142514150886067, guid: 485d3d34536848c46a8e3545f945dc7a, type: 3}
+      propertyPath: oneHandRotationModeFar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830142514150886067, guid: 485d3d34536848c46a8e3545f945dc7a, type: 3}
+      propertyPath: oneHandRotationModeNear
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -290,7 +302,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1010704104171722106, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
       propertyPath: m_Name
-      value: flat
+      value: Flat
       objectReference: {fileID: 0}
     - target: {fileID: 2563146055743962174, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
       propertyPath: m_RootOrder
@@ -359,7 +371,15 @@ PrefabInstance:
     - target: {fileID: 2816376662077251008, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
       propertyPath: markerPrefab
       value: 
-      objectReference: {fileID: -7802184210156373094, guid: 2c6d50a7792746847aecfec4fb52a031, type: 3}
+      objectReference: {fileID: -7559604829641386874, guid: 51e451ee3acd52c748fa990cb146fd8f, type: 3}
+    - target: {fileID: 5614586846432491284, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
+      propertyPath: oneHandRotationModeFar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5614586846432491284, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
+      propertyPath: oneHandRotationModeNear
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}

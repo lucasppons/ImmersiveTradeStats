@@ -6,13 +6,36 @@ using UnityEngine.Networking;
 
 public class DatasetParser
 {
-    public static IEnumerator QueryAPI(DataMap requester)
+    public class TradeQuery 
     {
-        string yearString = requester.year.ToString();
-        string reporterString = requester.reporter.ToString();
-        string partnerString = requester.partner.ToString();
-        string productString = productStrings[requester.product];
-        string indicatorString = indicatorStrings[requester.indicator];
+        public DatasetPrimitives.Country reporter;
+        public DatasetPrimitives.Country partner;
+        public DatasetPrimitives.Product product;
+        public DatasetPrimitives.Indicator indicator;
+        public int year;
+        
+        public TradeQuery(
+            DatasetPrimitives.Country reporter, 
+            DatasetPrimitives.Country partner, 
+            DatasetPrimitives.Product product, 
+            DatasetPrimitives.Indicator indicator, 
+            int year
+        ) {
+            this.reporter = reporter;
+            this.partner = partner;
+            this.product = product;
+            this.indicator = indicator;
+            this.year = year;
+        }
+    }
+    
+    public static IEnumerator QueryAPI(TradeQuery query, System.Action<List<DatasetPrimitives.Trade>> callback)
+    {
+        string yearString = query.year.ToString();
+        string reporterString = query.reporter.ToString();
+        string partnerString = query.partner.ToString();
+        string productString = productStrings[query.product];
+        string indicatorString = indicatorStrings[query.indicator];
         
         string uri = $"http://wits.worldbank.org/API/V1/SDMX/V21/datasource/tradestats-trade/reporter/{reporterString}/year/{yearString}/partner/{partnerString}/product/{productString}/indicator/{indicatorString}?format=JSON";
         
@@ -24,7 +47,7 @@ public class DatasetParser
             if (webRequest.result == UnityWebRequest.Result.Success) {
                 List<DatasetPrimitives.Trade> trades = ParseJsonResult(webRequest.downloadHandler.text);
                 
-                requester.ApiQueryCallback(trades);
+                callback(trades);
             } else {
                 Debug.LogError(webRequest.error);
             }                
@@ -64,15 +87,28 @@ public class DatasetParser
             string[] indexers = entry.Key.Split(':');
             
             try {
-                trade.reporter = (DatasetPrimitives.Country)System.Enum.Parse(typeof(DatasetPrimitives.Country), reporters[int.Parse(indexers[reporterIndex])].id);
-                trade.partner = (DatasetPrimitives.Country)System.Enum.Parse(typeof(DatasetPrimitives.Country), partners[int.Parse(indexers[partnerIndex])].id);
-                trade.product = reverseProductStrings[products[int.Parse(indexers[productIndex])].id];
+                Value reporter = reporters[int.Parse(indexers[reporterIndex])];
+                Value partner = partners[int.Parse(indexers[partnerIndex])];
+                Value product = products[int.Parse(indexers[productIndex])];
+                
+                trade.reporter = (DatasetPrimitives.Country)System.Enum.Parse(typeof(DatasetPrimitives.Country), reporter.id);
+                trade.reporterName = reporter.name;
+                
+                trade.partner = (DatasetPrimitives.Country)System.Enum.Parse(typeof(DatasetPrimitives.Country), partner.id);
+                trade.partnerName = partner.name;
+                
+                trade.product = reverseProductStrings[product.id];
+                trade.productName = product.name;
+                
                 trade.indicator = reverseIndicatorStrings[indicators[int.Parse(indexers[indicatorIndex])].id];
+                
                 trade.value = entry.Value.observations["0"][0];
                 
-                trades.Add(trade);            
+                if (trade.reporter != DatasetPrimitives.Country.WLD) {
+                    trades.Add(trade);            
+                }
                 
-                Debug.Log($"{trade.reporter} | {trade.partner} | {trade.product} | {trade.indicator} | {trade.value.ToString()}");
+                Debug.Log($"{trade.reporterName} | {trade.partnerName} | {trade.productName} | {trade.indicator} | {trade.value.ToString()}");
             } catch (System.Exception e) {
                 Debug.Log(e.Message);
             }
@@ -117,8 +153,8 @@ public class DatasetParser
     {
         {DatasetPrimitives.Indicator.Import, "MPRT-TRD-VL"},
         {DatasetPrimitives.Indicator.Export, "XPRT-TRD-VL"},
-        {DatasetPrimitives.Indicator.Both, "ALL"},
-    };  
+        {DatasetPrimitives.Indicator.Both, "MPRT-TRD-VL;XPRT-TRD-VL"},
+    };
     
     [System.Serializable]
     class Result 

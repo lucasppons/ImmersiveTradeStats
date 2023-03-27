@@ -7,8 +7,11 @@ public class DatasetPrimitives
     public class Trade
     {
         public Country reporter;
+        public string reporterName;
         public Country partner;
+        public string partnerName;
         public Product product;
+        public string productName;
         public Indicator indicator;
         public float value;
     }
@@ -44,6 +47,7 @@ public class DatasetPrimitives
     public enum Country
     {
         All,
+        WLD,
         AFG,
         ALB,
         DZA,
