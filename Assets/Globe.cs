@@ -18,15 +18,13 @@ public class Globe : DataMap
         return new Vector3(x, z, y) * radius;
     }
     
-    protected override void ConfigureArc(TradeArc arc, DatasetPrimitives.Trade trade, float min, float max)
+    protected override Vector3 ArcOutDirection(Vector3 from, Vector3 to)
     {
-        Vector3 from = MarkerPosition(DatasetPrimitives.coords[trade.partner]);
-        Vector3 to = MarkerPosition(DatasetPrimitives.coords[trade.reporter]);
-        Vector3 outDirection = from + to;
-        Color color = (trade.indicator == DatasetPrimitives.Indicator.Import) ? Color.green : Color.red;
-        float width = (trade.value - min) / (max - min);
-        float height = Vector3.Distance(from, to) * 0.55f;
-        
-        arc.Configure(from, to, height, width, outDirection, color);
+        return from + to;
+    }
+    
+    protected override float ArcHeight()
+    {
+        return 0.55f;
     }
 }

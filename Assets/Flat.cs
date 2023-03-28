@@ -12,15 +12,13 @@ public class Flat : DataMap
         return new Vector3(lon / transform.localScale.x, 0.0f, lat / transform.localScale.z);
     }
     
-    protected override void ConfigureArc(TradeArc arc, DatasetPrimitives.Trade trade, float min, float max)
+    protected override Vector3 ArcOutDirection(Vector3 from, Vector3 to)
     {
-        Vector3 from = MarkerPosition(DatasetPrimitives.coords[trade.partner]);
-        Vector3 to = MarkerPosition(DatasetPrimitives.coords[trade.reporter]);
-        Vector3 outDirection = new Vector3(0.0f, 1.0f, 0.0f);
-        Color color = (trade.indicator == DatasetPrimitives.Indicator.Import) ? Color.green : Color.red;
-        float width = (trade.value - min) / (max - min);
-        float height = Vector3.Distance(from, to) * 0.05f;
-        
-        arc.Configure(from, to, height, width, outDirection, color);
+        return new Vector3(0.0f, 1.0f, 0.0f);
+    }
+    
+    protected override float ArcHeight()
+    {
+        return 0.05f;
     }
 }

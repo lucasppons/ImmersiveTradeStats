@@ -14,6 +14,14 @@ public class DatasetPrimitives
         public string productName;
         public Indicator indicator;
         public float value;
+        
+        public bool SameRouteAs(Trade trade) {
+            return (reporter == trade.reporter) && (partner == trade.partner);
+        }
+        
+        public bool SameRouteAs(DatasetParser.TradeQuery query) {
+            return (reporter == query.reporter) && (partner == query.partner);
+        }
     }
     
     public enum Indicator
