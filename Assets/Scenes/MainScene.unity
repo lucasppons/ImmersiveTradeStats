@@ -153,7 +153,7 @@ Transform:
   m_Children:
   - {fileID: 1941216192}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &405649742
 PrefabInstance:
@@ -176,17 +176,9 @@ PrefabInstance:
       value: 33
       objectReference: {fileID: 0}
     - target: {fileID: -688079362022053764, guid: 485d3d34536848c46a8e3545f945dc7a, type: 3}
-      propertyPath: arcPrefab
-      value: 
-      objectReference: {fileID: 2164940178928021056, guid: b65d3b07c662bc08db77d9e853bd21b2, type: 3}
-    - target: {fileID: -688079362022053764, guid: 485d3d34536848c46a8e3545f945dc7a, type: 3}
       propertyPath: indicator
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: -688079362022053764, guid: 485d3d34536848c46a8e3545f945dc7a, type: 3}
-      propertyPath: markerPrefab
-      value: 
-      objectReference: {fileID: -7559604829641386874, guid: 51e451ee3acd52c748fa990cb146fd8f, type: 3}
     - target: {fileID: 496970782896851281, guid: 485d3d34536848c46a8e3545f945dc7a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -234,14 +226,6 @@ PrefabInstance:
     - target: {fileID: 946120577202543686, guid: 485d3d34536848c46a8e3545f945dc7a, type: 3}
       propertyPath: m_Name
       value: Globe
-      objectReference: {fileID: 0}
-    - target: {fileID: 4830142514150886067, guid: 485d3d34536848c46a8e3545f945dc7a, type: 3}
-      propertyPath: oneHandRotationModeFar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4830142514150886067, guid: 485d3d34536848c46a8e3545f945dc7a, type: 3}
-      propertyPath: oneHandRotationModeNear
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -322,11 +306,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2563146055743962174, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7933534
       objectReference: {fileID: 0}
     - target: {fileID: 2563146055743962174, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.60876137
       objectReference: {fileID: 0}
     - target: {fileID: 2563146055743962174, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
       propertyPath: m_LocalRotation.y
@@ -338,7 +322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2563146055743962174, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 2563146055743962174, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -361,24 +345,8 @@ PrefabInstance:
       value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 2816376662077251008, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
-      propertyPath: arcPrefab
-      value: 
-      objectReference: {fileID: 2164940178928021056, guid: b65d3b07c662bc08db77d9e853bd21b2, type: 3}
-    - target: {fileID: 2816376662077251008, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
       propertyPath: indicator
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2816376662077251008, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
-      propertyPath: markerPrefab
-      value: 
-      objectReference: {fileID: -7559604829641386874, guid: 51e451ee3acd52c748fa990cb146fd8f, type: 3}
-    - target: {fileID: 5614586846432491284, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
-      propertyPath: oneHandRotationModeFar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5614586846432491284, guid: e0fd4398db598474ab2bac780b154fb6, type: 3}
-      propertyPath: oneHandRotationModeNear
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -622,7 +590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1108419882308158592, guid: a912065df8e0b4b4385507810e31c60d, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1108419882308158592, guid: a912065df8e0b4b4385507810e31c60d, type: 3}
       propertyPath: m_LocalPosition.x

@@ -21,4 +21,11 @@ public class Flat : DataMap
     {
         return 0.05f;
     }
+    
+    public override Vector3 FiltersPosition()
+    {
+        Vector3 look = (Camera.main.transform.position - transform.position).normalized;
+        
+        return transform.position + (look * 0.3f);
+    }
 }

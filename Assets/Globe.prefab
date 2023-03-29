@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1407390018659924620}
   - component: {fileID: 4830142514150886067}
   - component: {fileID: -688079362022053764}
+  - component: {fileID: 2374056431504948848}
   m_Layer: 0
   m_Name: Globe
   m_TagString: Untagged
@@ -131,8 +132,8 @@ MonoBehaviour:
   twoHandedManipulationType: 7
   allowFarManipulation: 1
   useForcesForNearManipulation: 0
-  oneHandRotationModeNear: 1
-  oneHandRotationModeFar: 1
+  oneHandRotationModeNear: 0
+  oneHandRotationModeFar: 0
   releaseBehavior: 3
   transformSmoothingLogicType:
     reference: Microsoft.MixedReality.Toolkit.Utilities.DefaultTransformSmoothingLogic,
@@ -169,9 +170,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08ec0070320ed2795976afe09e9272f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reporter: 0
-  partner: 0
-  product: 0
-  indicator: 0
-  year: 0
-  markerPrefab: {fileID: 3336150187686181491, guid: 2c6d50a7792746847aecfec4fb52a031, type: 3}
+  markerPrefab: {fileID: -7559604829641386874, guid: 51e451ee3acd52c748fa990cb146fd8f, type: 3}
+  arcPrefab: {fileID: 2164940178928021056, guid: b65d3b07c662bc08db77d9e853bd21b2, type: 3}
+  filtersPrefab: {fileID: 7583003644341323282, guid: 8aaeadd2b19ba74dbbfba8ac992d68de, type: 3}
+  meshRenderer: {fileID: 2094058290432098599}
+--- !u!114 &2374056431504948848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946120577202543686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fe7721a0743104baae38e46537705b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFocusRequired: 1
+  InputAction:
+    id: 2
+    description: Menu
+    axisConstraint: 2
+  MarkEventsAsUsed: 1
+  OnInputActionStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -688079362022053764}
+        m_TargetAssemblyTypeName: DataMap, Assembly-CSharp
+        m_MethodName: OpenFilters
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnInputActionEnded:
+    m_PersistentCalls:
+      m_Calls: []

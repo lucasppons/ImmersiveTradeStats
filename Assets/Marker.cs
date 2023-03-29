@@ -7,8 +7,12 @@ public class Marker : MonoBehaviour
     [SerializeField]
     TMPro.TMP_Text label;
     
+    [SerializeField]
+    MeshRenderer meshRenderer;
+    
     DataMap map;
     
+    [HideInInspector]
     public DatasetPrimitives.Trade baseTrade;
 
     void Update()
@@ -46,11 +50,11 @@ public class Marker : MonoBehaviour
     
     public void Highlight()
     {
-        GetComponent<Renderer>().material.color = Color.red;
+        meshRenderer.material.color = Color.magenta;
     }
     
     public void Lowlight()
     {
-        GetComponent<Renderer>().material.color = new Color(0.63f, 0.0f, 0.0f, 1.0f);
+        meshRenderer.material.color = new Color(0.63f, 0.0f, 0.0f, 1.0f);
     }
 }

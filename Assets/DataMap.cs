@@ -5,20 +5,21 @@ using UnityEngine;
 public abstract class DataMap : MonoBehaviour
 {
     [SerializeField]
-    DatasetPrimitives.Product product;
-    
-    [SerializeField]
-    int year;
-    
-    [SerializeField]
     Marker markerPrefab;
     
     [SerializeField]
     TradeArc arcPrefab;
     
+    [SerializeField]
+    MapFilters filtersPrefab;
+    
+    DatasetPrimitives.Product product = DatasetPrimitives.Product.All;
+    
+    int year = 2004;
+    
     List<Marker> markers = new List<Marker>();
     
-    List<TradeArc> arcs= new List<TradeArc>();
+    List<TradeArc> arcs = new List<TradeArc>();
     
     Vector3 scale = new Vector3(1.0f, 1.0f, 1.0f);
     
@@ -27,18 +28,7 @@ public abstract class DataMap : MonoBehaviour
     float minValue = float.PositiveInfinity;
     float maxValue = float.NegativeInfinity;
     
-    void Start() 
-    {
-        DatasetParser.TradeQuery query = new DatasetParser.TradeQuery(
-            DatasetPrimitives.Country.All,
-            DatasetPrimitives.Country.WLD,
-            product,
-            DatasetPrimitives.Indicator.Export,
-            year
-        );
-        
-        StartCoroutine(DatasetParser.QueryAPI(query, AddMarkers));
-    }
+    bool filtersOpen = false;
     
     void Update()
     {
@@ -53,9 +43,82 @@ public abstract class DataMap : MonoBehaviour
                 );
             }
             
+            foreach (TradeArc arc in arcs) {
+                arc.node.transform.localScale = new Vector3(
+                    arc.node.transform.localScale.x * scale.x / newScale.x, 
+                    arc.node.transform.localScale.y * scale.y / newScale.y, 
+                    arc.node.transform.localScale.z * scale.z / newScale.z
+                );
+            }
+            
             scale = newScale;
         }
     }
+    
+    public void OpenFilters()
+    {
+        if (filtersOpen) return;
+        
+        MapFilters filters = Instantiate(filtersPrefab);
+        
+        filters.Open(this, product, year);
+        
+        filtersOpen = true;
+    }
+    
+    public void FiltersClosed()
+    {
+        filtersOpen = false;
+    }
+    
+    public void ApplyFilters(DatasetPrimitives.Product product, int year)
+    {
+        foreach (Marker marker in markers) {
+            Destroy(marker.gameObject);
+        }
+        
+        markers.Clear();
+        
+        DatasetParser.TradeQuery markersQuery = new DatasetParser.TradeQuery(
+            DatasetPrimitives.Country.All,
+            DatasetPrimitives.Country.WLD,
+            product,
+            DatasetPrimitives.Indicator.Export,
+            year
+        );
+        
+        StartCoroutine(DatasetParser.QueryAPI(markersQuery, AddMarkers));
+        
+        List<DatasetPrimitives.Trade> trades = new List<DatasetPrimitives.Trade>();
+        
+        foreach (TradeArc arc in arcs) {
+            trades.Add(arc.trade);
+            
+            Destroy(arc.gameObject);
+        }
+        
+        arcs.Clear();
+        
+        minValue = float.PositiveInfinity;
+        maxValue = float.NegativeInfinity;
+        
+        foreach (DatasetPrimitives.Trade trade in trades) {
+            DatasetParser.TradeQuery arcQuery = new DatasetParser.TradeQuery(
+                trade.reporter,
+                trade.partner,
+                product,
+                trade.indicator,
+                year
+            );
+            
+            StartCoroutine(DatasetParser.QueryAPI(arcQuery, AddArcs));
+        }
+        
+        this.product = product;
+        this.year = year;
+    }
+    
+    public abstract Vector3 FiltersPosition();
     
     public void AddMarkers(List<DatasetPrimitives.Trade> trades)
     {

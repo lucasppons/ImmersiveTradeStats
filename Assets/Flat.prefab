@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -596785002673084627}
   - component: {fileID: 5614586846432491284}
   - component: {fileID: 2816376662077251008}
+  - component: {fileID: 3437199226667753077}
   m_Layer: 0
   m_Name: Flat
   m_TagString: Untagged
@@ -132,8 +133,8 @@ MonoBehaviour:
   twoHandedManipulationType: 7
   allowFarManipulation: 1
   useForcesForNearManipulation: 0
-  oneHandRotationModeNear: 1
-  oneHandRotationModeFar: 1
+  oneHandRotationModeNear: 0
+  oneHandRotationModeFar: 0
   releaseBehavior: 3
   transformSmoothingLogicType:
     reference: Microsoft.MixedReality.Toolkit.Utilities.DefaultTransformSmoothingLogic,
@@ -170,9 +171,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf3753ffae476fc5a62cf10158e89e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reporter: 0
-  partner: 0
-  product: 0
-  indicator: 0
-  year: 0
-  markerPrefab: {fileID: 0}
+  markerPrefab: {fileID: -7559604829641386874, guid: 51e451ee3acd52c748fa990cb146fd8f, type: 3}
+  arcPrefab: {fileID: 2164940178928021056, guid: b65d3b07c662bc08db77d9e853bd21b2, type: 3}
+  filtersPrefab: {fileID: 7583003644341323282, guid: 8aaeadd2b19ba74dbbfba8ac992d68de, type: 3}
+--- !u!114 &3437199226667753077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010704104171722106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fe7721a0743104baae38e46537705b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFocusRequired: 1
+  InputAction:
+    id: 2
+    description: Menu
+    axisConstraint: 2
+  MarkEventsAsUsed: 1
+  OnInputActionStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2816376662077251008}
+        m_TargetAssemblyTypeName: DataMap, Assembly-CSharp
+        m_MethodName: OpenFilters
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnInputActionEnded:
+    m_PersistentCalls:
+      m_Calls: []
