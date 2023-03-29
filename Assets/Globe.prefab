@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4830142514150886067}
   - component: {fileID: -688079362022053764}
   - component: {fileID: 2374056431504948848}
+  - component: {fileID: 6700695623805466706}
   m_Layer: 0
   m_Name: Globe
   m_TagString: Untagged
@@ -210,3 +211,17 @@ MonoBehaviour:
   OnInputActionEnded:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6700695623805466706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946120577202543686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5afd5316c63705643b3daba5a6e923bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTetherWhenManipulating: 0
+  IsBoundsHandles: 0

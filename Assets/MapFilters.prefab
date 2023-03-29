@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 109386268422059739}
   - component: {fileID: 3647690059606627706}
-  - component: {fileID: 5243223188581015704}
   - component: {fileID: 1924164095796150117}
   m_Layer: 0
   m_Name: Product
@@ -81,14 +80,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!222 &5243223188581015704
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2120318504979884563}
-  m_CullTransparentMesh: 0
 --- !u!114 &1924164095796150117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +182,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3085027036186615949}
   - component: {fileID: 4464796401252696895}
-  - component: {fileID: 5213678690355937771}
   - component: {fileID: 5435605925499621731}
   m_Layer: 0
   m_Name: Year
@@ -262,14 +252,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!222 &5213678690355937771
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5399297339423847598}
-  m_CullTransparentMesh: 0
 --- !u!114 &5435605925499621731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,7 +354,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8793771874060703771}
   - component: {fileID: 1353847689483763579}
-  - component: {fileID: 5157474021240974050}
   - component: {fileID: 2513118339695137424}
   m_Layer: 0
   m_Name: SelectedYear
@@ -443,14 +424,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!222 &5157474021240974050
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5735629160433959191}
-  m_CullTransparentMesh: 0
 --- !u!114 &2513118339695137424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1654,7 +1627,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7779420038487776841, guid: 937ce507dd7ee334ba569554e24adbdd, type: 3}
+    - {fileID: 7779420038454194001, guid: 937ce507dd7ee334ba569554e24adbdd, type: 3}
+    - {fileID: 7779420037966654374, guid: 937ce507dd7ee334ba569554e24adbdd, type: 3}
+    - {fileID: 2594038680379289592, guid: 937ce507dd7ee334ba569554e24adbdd, type: 3}
+    - {fileID: 2594038681537981199, guid: 937ce507dd7ee334ba569554e24adbdd, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7779420039263858271, guid: 937ce507dd7ee334ba569554e24adbdd, type: 3}
       insertIndex: -1
@@ -1881,7 +1859,9 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3126786009469193213, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
+    - {fileID: 7164521595076987732, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f44c0d070528944c9bff425c6932763, type: 3}
 --- !u!4 &1659711756765465629 stripped

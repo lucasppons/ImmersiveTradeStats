@@ -65,10 +65,6 @@ public class MapFilters : MonoBehaviour
         
         SelectProduct(product);
         
-        Debug.Log(year);
-        Debug.Log((year - 1988) / 32);
-        Debug.Log((year - 1988) / 32.0f);
-        
         yearSlider.SliderValue = (year - 1988) / 32.0f;
     }
     

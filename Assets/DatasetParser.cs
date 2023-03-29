@@ -110,7 +110,7 @@ public class DatasetParser
                 
                 Debug.Log($"{trade.reporterName} | {trade.partnerName} | {trade.productName} | {trade.indicator} | {trade.value.ToString()}");
             } catch (System.Exception e) {
-                Debug.Log(e.Message);
+                Debug.LogWarning(e.Message);
             }
         }
         
