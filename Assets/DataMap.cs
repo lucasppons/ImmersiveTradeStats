@@ -94,6 +94,7 @@ public abstract class DataMap : MonoBehaviour
         foreach (TradeArc arc in arcs) {
             trades.Add(arc.trade);
             
+            Destroy(arc.node.gameObject);
             Destroy(arc.gameObject);
         }
         
@@ -139,7 +140,7 @@ public abstract class DataMap : MonoBehaviour
         }
     }
     
-    public void SelectMarker(Marker marker)
+    public void SelectMarker(Marker marker, DatasetPrimitives.Indicator indicator)
     {
         if (arcOrigin == null) {            
             marker.Highlight();
@@ -154,11 +155,11 @@ public abstract class DataMap : MonoBehaviour
                 arcOrigin.baseTrade.reporter,
                 marker.baseTrade.reporter,
                 product,
-                DatasetPrimitives.Indicator.Export,
+                indicator,
                 year
             );
             
-            if (!this.arcs.Exists((arc) => arc.trade.SameRouteAs(query))) {            
+            if (!this.arcs.Exists((arc) => arc.trade.SameTradeAs(query))) {            
                 StartCoroutine(DatasetParser.QueryAPI(query, AddArcs));
             }
             
@@ -171,8 +172,6 @@ public abstract class DataMap : MonoBehaviour
     public void AddArcs(List<DatasetPrimitives.Trade> trades) 
     {        
         foreach (DatasetPrimitives.Trade trade in trades) {
-            if (this.arcs.Exists((arc) => arc.trade.SameRouteAs(trade))) continue;
-            
             if (trade.value > maxValue) {
                 maxValue = trade.value;
             } 
@@ -183,8 +182,6 @@ public abstract class DataMap : MonoBehaviour
         }
         
         foreach (DatasetPrimitives.Trade trade in trades) {
-            if (this.arcs.Exists((arc) => arc.trade.SameRouteAs(trade))) continue;
-            
             TradeArc arc = Instantiate(arcPrefab, transform);
             
             ConfigureArc(arc, trade);
@@ -199,28 +196,25 @@ public abstract class DataMap : MonoBehaviour
     
     void ConfigureArc(TradeArc arc, DatasetPrimitives.Trade trade)
     {
-        Vector3 from = MarkerPosition(DatasetPrimitives.coords[trade.partner]);
-        Vector3 to = MarkerPosition(DatasetPrimitives.coords[trade.reporter]);   
-        float height = Vector3.Distance(from, to) * ArcHeight();
-        
-        arc.Configure(from, to, height, ArcWidth(trade), ArcOutDirection(from, to), this, trade);
+        arc.Configure(this, trade);
     }
     
-    float ArcWidth(DatasetPrimitives.Trade trade)
+    public float ArcWidth(DatasetPrimitives.Trade trade)
     {
         float interval = maxValue - minValue;
         
         return (interval == 0.0f) ? 1.0f : ((trade.value - minValue) / interval);
     }
     
-    protected abstract Vector3 MarkerPosition(Vector2 coord);
-    protected abstract Vector3 ArcOutDirection(Vector3 from, Vector3 to);
-    protected abstract float ArcHeight();
+    public abstract Vector3 MarkerPosition(Vector2 coord);
+    public abstract Vector3 ArcOutDirection(Vector3 from, Vector3 to);
+    public abstract float ArcHeight();
     
     public void RemoveArc(TradeArc removedArc)
     {
         arcs.Remove(removedArc);
         
+        Destroy(removedArc.node.gameObject);
         Destroy(removedArc.gameObject);
         
         minValue = float.PositiveInfinity;

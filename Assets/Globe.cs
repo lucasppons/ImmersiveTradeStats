@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class Globe : DataMap
 {    
-    [SerializeField]
-    MeshRenderer meshRenderer;
-    
-    protected override Vector3 MarkerPosition(Vector2 coord)
+    public override Vector3 MarkerPosition(Vector2 coord)
     {
-        float radius = meshRenderer.bounds.extents.x;
-        
         float lon = coord.y * Mathf.PI / 180;
         float lat = coord.x * Mathf.PI / 180;
         
@@ -18,23 +13,25 @@ public class Globe : DataMap
         float y = Mathf.Cos(lat) * Mathf.Sin(lon);
         float z = Mathf.Sin(lat);
         
-        return new Vector3(x, z, y) * radius;
+        return new Vector3(x, z, y) * 0.5f;
     }
     
-    protected override Vector3 ArcOutDirection(Vector3 from, Vector3 to)
+    public override Vector3 ArcOutDirection(Vector3 from, Vector3 to)
     {
         return from + to;
     }
     
-    protected override float ArcHeight()
+    public override float ArcHeight()
     {
         return 0.55f;
     }
     
     public override Vector3 FiltersPosition()
     {
+        float radius = transform.localScale.x / 2;
+        
         Vector3 look = (Camera.main.transform.position - transform.position).normalized;
         
-        return transform.position + (look * (meshRenderer.bounds.extents.x + 0.1f));
+        return transform.position + (look * (radius + 0.1f));
     }
 }

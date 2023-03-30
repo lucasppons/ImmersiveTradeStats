@@ -22,6 +22,14 @@ public class DatasetPrimitives
         public bool SameRouteAs(DatasetParser.TradeQuery query) {
             return (reporter == query.reporter) && (partner == query.partner);
         }
+        
+        public bool SameTradeAs(Trade trade) {
+            return SameRouteAs(trade) && (indicator == trade.indicator);
+        }
+        
+        public bool SameTradeAs(DatasetParser.TradeQuery query) {
+            return SameRouteAs(query) && (indicator == query.indicator);
+        }
     }
     
     public enum Indicator

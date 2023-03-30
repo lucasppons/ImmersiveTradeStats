@@ -43,9 +43,14 @@ public class Marker : MonoBehaviour
         label.enabled = false;
     }
     
-    public void Select() 
+    public void SelectImport() 
     {
-        map.SelectMarker(this);
+        map.SelectMarker(this, DatasetPrimitives.Indicator.Import);
+    }
+    
+    public void SelectExport()
+    {
+        map.SelectMarker(this, DatasetPrimitives.Indicator.Export);
     }
     
     public void Highlight()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TradeArcNode : MonoBehaviour
 {
     [SerializeField]
@@ -38,8 +39,6 @@ public class TradeArcNode : MonoBehaviour
     
     public void RemoveArc()
     {
-        Destroy(gameObject);
-        
         arc.Remove();
     }
 }

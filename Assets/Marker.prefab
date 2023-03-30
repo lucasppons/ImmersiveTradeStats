@@ -187,6 +187,9 @@ GameObject:
   - component: {fileID: -7559604829641386874}
   - component: {fileID: 7271480941745559187}
   - component: {fileID: 8079577843985134921}
+  - component: {fileID: 8876282317061473826}
+  - component: {fileID: 5351363554595042923}
+  - component: {fileID: 2261740194309502897}
   m_Layer: 0
   m_Name: Marker
   m_TagString: Untagged
@@ -203,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 6536909925888829986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.015, y: 0.015, z: 0.015}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2620008699032848360}
@@ -343,8 +346,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputAction:
-    id: 7
-    description: Grip Press
+    id: 19
+    description: ImportSA
     axisConstraint: 3
   onChange:
     m_PersistentCalls:
@@ -354,7 +357,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: -7559604829641386874}
         m_TargetAssemblyTypeName: Marker, Assembly-CSharp
-        m_MethodName: Select
+        m_MethodName: SelectImport
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -365,5 +368,114 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   onMin:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8876282317061473826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6536909925888829986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 960fbab22e0e6db03b3490d720755e9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputAction:
+    id: 20
+    description: ExportSA
+    axisConstraint: 3
+  onChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onMax:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -7559604829641386874}
+        m_TargetAssemblyTypeName: Marker, Assembly-CSharp
+        m_MethodName: SelectExport
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMin:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &5351363554595042923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6536909925888829986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fe7721a0743104baae38e46537705b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFocusRequired: 1
+  InputAction:
+    id: 17
+    description: Import
+    axisConstraint: 2
+  MarkEventsAsUsed: 1
+  OnInputActionStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -7559604829641386874}
+        m_TargetAssemblyTypeName: Marker, Assembly-CSharp
+        m_MethodName: SelectImport
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnInputActionEnded:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &2261740194309502897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6536909925888829986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fe7721a0743104baae38e46537705b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFocusRequired: 1
+  InputAction:
+    id: 18
+    description: Export
+    axisConstraint: 2
+  MarkEventsAsUsed: 1
+  OnInputActionStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -7559604829641386874}
+        m_TargetAssemblyTypeName: Marker, Assembly-CSharp
+        m_MethodName: SelectExport
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnInputActionEnded:
     m_PersistentCalls:
       m_Calls: []

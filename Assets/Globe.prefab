@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4830142514150886067}
   - component: {fileID: -688079362022053764}
   - component: {fileID: 2374056431504948848}
-  - component: {fileID: 6700695623805466706}
+  - component: {fileID: 534943447048552373}
   m_Layer: 0
   m_Name: Globe
   m_TagString: Untagged
@@ -174,7 +174,6 @@ MonoBehaviour:
   markerPrefab: {fileID: -7559604829641386874, guid: 51e451ee3acd52c748fa990cb146fd8f, type: 3}
   arcPrefab: {fileID: 2164940178928021056, guid: b65d3b07c662bc08db77d9e853bd21b2, type: 3}
   filtersPrefab: {fileID: 7583003644341323282, guid: 8aaeadd2b19ba74dbbfba8ac992d68de, type: 3}
-  meshRenderer: {fileID: 2094058290432098599}
 --- !u!114 &2374056431504948848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +210,7 @@ MonoBehaviour:
   OnInputActionEnded:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6700695623805466706
+--- !u!114 &534943447048552373
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

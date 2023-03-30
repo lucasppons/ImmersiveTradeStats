@@ -59,3 +59,18 @@ MonoBehaviour:
   - id: 15
     description: Toggle Profiler
     axisConstraint: 0
+  - id: 16
+    description: Pick
+    axisConstraint: 2
+  - id: 17
+    description: Import
+    axisConstraint: 2
+  - id: 18
+    description: Export
+    axisConstraint: 2
+  - id: 19
+    description: ImportSA
+    axisConstraint: 3
+  - id: 20
+    description: ExportSA
+    axisConstraint: 3
