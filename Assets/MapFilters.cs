@@ -30,7 +30,7 @@ public class MapFilters : MonoBehaviour
     {
         if (map == null) return;
         
-        transform.position = map.FiltersPosition() + new Vector3(0.066f, 0.0f, 0.0f);
+        transform.position = map.FiltersPosition();
         transform.LookAt(Camera.main.transform);
         transform.Rotate(0.0f, 180.0f, 0.0f);
     }

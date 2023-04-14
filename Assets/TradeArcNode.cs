@@ -35,6 +35,12 @@ public class TradeArcNode : MonoBehaviour
         
         label.text = $"{valueText} K$";
         label.enabled = false;
+        
+        if (arc.map is Globe) {
+            transform.LookAt(arc.map.transform);
+            
+            transform.Rotate(-90.0f, 0.0f, 0.0f);
+        }
     }
     
     public void ShowLabel() 
