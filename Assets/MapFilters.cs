@@ -69,11 +69,11 @@ public class MapFilters : MonoBehaviour
     {
         DataMap newMap = (DataMap) Instantiate(
             (map is Flat) ? flatPrefab : globePrefab, 
-            Camera.main.transform.position + (Quaternion.AngleAxis(45.0f, Vector3.up) * (map.transform.position - Camera.main.transform.position)), 
+            Camera.main.transform.position + (Quaternion.AngleAxis(60.0f, Vector3.up) * (map.transform.position - Camera.main.transform.position)), 
             map.transform.rotation
         );
         
-        newMap.transform.Rotate(0.0f, 45.0f, 0.0f, Space.World);
+        newMap.transform.Rotate(0.0f, 60.0f, 0.0f, Space.World);
         
         List<DatasetPrimitives.Trade> trades = new List<DatasetPrimitives.Trade>();
         

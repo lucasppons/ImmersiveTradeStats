@@ -5,10 +5,15 @@ using UnityEngine;
 
 public class TradeArcNode : MonoBehaviour
 {
-    [SerializeField]
-    TMPro.TMP_Text label;
+    public TMPro.TMP_Text label;
     
-    TradeArc arc;
+    [HideInInspector]
+    public TradeArc arc;
+    
+    [SerializeField]
+    TradeArcInfo tradeArcInfoPrefab;
+    
+    bool infoOpen = false;
     
     void Update()
     {
@@ -51,6 +56,22 @@ public class TradeArcNode : MonoBehaviour
     public void HideLabel() 
     {
         label.enabled = false;
+    }
+    
+    public void ShowInfo()
+    {
+        if (infoOpen) return;
+        
+        TradeArcInfo tradeArcInfo = Instantiate(tradeArcInfoPrefab, transform);
+        
+        tradeArcInfo.Configure(this);
+        
+        infoOpen = true;
+    }
+    
+    public void InfoClosed()
+    {
+        infoOpen = false;
     }
     
     public void RemoveArc()

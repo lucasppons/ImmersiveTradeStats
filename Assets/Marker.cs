@@ -20,6 +20,8 @@ public class Marker : MonoBehaviour
     
     [SerializeField]
     MarkerInfo markerInfoPrefab;
+    
+    bool infoOpen = false;
 
     void Update()
     {
@@ -75,9 +77,18 @@ public class Marker : MonoBehaviour
     
     public void ShowInfo()
     {
+        if (infoOpen) return;
+        
         MarkerInfo markerInfo = Instantiate(markerInfoPrefab, transform);
         
         markerInfo.Configure(this);
+        
+        infoOpen = true;
+    }
+    
+    public void InfoClosed()
+    {
+        infoOpen = false;
     }
     
     public void SelectImport() 
