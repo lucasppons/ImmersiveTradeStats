@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 8876282317061473826}
   - component: {fileID: 5351363554595042923}
   - component: {fileID: 2261740194309502897}
+  - component: {fileID: 8755128973171785099}
   m_Layer: 0
   m_Name: Marker
   m_TagString: Untagged
@@ -290,6 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   label: {fileID: 3491322963247619165}
   meshRenderer: {fileID: 2431311517975861522}
+  markerInfoPrefab: {fileID: 7830407395830807949, guid: 4a315fee71d4cb48e8aa108599783ae5, type: 3}
 --- !u!114 &7271480941745559187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,6 +469,42 @@ MonoBehaviour:
       - m_Target: {fileID: -7559604829641386874}
         m_TargetAssemblyTypeName: Marker, Assembly-CSharp
         m_MethodName: SelectExport
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnInputActionEnded:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8755128973171785099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6536909925888829986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fe7721a0743104baae38e46537705b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFocusRequired: 1
+  InputAction:
+    id: 2
+    description: Menu
+    axisConstraint: 2
+  MarkEventsAsUsed: 1
+  OnInputActionStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -7559604829641386874}
+        m_TargetAssemblyTypeName: Marker, Assembly-CSharp
+        m_MethodName: ShowInfo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

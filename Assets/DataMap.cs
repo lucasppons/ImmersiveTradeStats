@@ -20,7 +20,7 @@ public abstract class DataMap : MonoBehaviour
     public int year = 2004;
     
     [HideInInspector]
-    public List<Marker> markers = new List<Marker>();
+    public Dictionary<DatasetPrimitives.Country, Marker> markers = new Dictionary<DatasetPrimitives.Country, Marker>();
     
     [HideInInspector]
     public List<TradeArc> arcs = new List<TradeArc>();
@@ -39,7 +39,7 @@ public abstract class DataMap : MonoBehaviour
         Vector3 newScale = transform.localScale;
         
         if (newScale != scale) {
-            foreach (Marker marker in markers) {
+            foreach (Marker marker in markers.Values) {
                 marker.transform.localScale = new Vector3(
                     marker.transform.localScale.x * scale.x / newScale.x, 
                     marker.transform.localScale.y * scale.y / newScale.y, 
@@ -81,7 +81,7 @@ public abstract class DataMap : MonoBehaviour
         
         if ((product == this.product) && (year == this.year)) return;
         
-        foreach (Marker marker in markers) {
+        foreach (Marker marker in markers.Values) {
             Destroy(marker.gameObject);
         }
         
@@ -91,7 +91,7 @@ public abstract class DataMap : MonoBehaviour
             DatasetPrimitives.Country.All,
             DatasetPrimitives.Country.WLD,
             product,
-            DatasetPrimitives.Indicator.Export,
+            DatasetPrimitives.Indicator.Both,
             year
         );
         
@@ -137,11 +137,15 @@ public abstract class DataMap : MonoBehaviour
     public void AddMarkers(List<DatasetPrimitives.Trade> trades)
     {
         foreach (DatasetPrimitives.Trade trade in trades) {
-            Marker marker = Instantiate(markerPrefab, transform);
-            
-            marker.Configure(this, trade);
-            
-            markers.Add(marker);
+            if (markers.ContainsKey(trade.reporter)) {
+                markers[trade.reporter].AddTrade(trade);
+            } else {
+                Marker marker = Instantiate(markerPrefab, transform);
+                
+                marker.Configure(this, trade);
+                
+                markers.Add(trade.reporter, marker);
+            }
         }
     }
     
@@ -157,8 +161,8 @@ public abstract class DataMap : MonoBehaviour
             arcOrigin = null;
         } else {
             DatasetParser.TradeQuery query = new DatasetParser.TradeQuery(
-                arcOrigin.baseTrade.reporter,
-                marker.baseTrade.reporter,
+                arcOrigin.import.reporter,
+                marker.import.reporter,
                 product,
                 indicator,
                 year

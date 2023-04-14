@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class Marker : MonoBehaviour
 {
-    [SerializeField]
-    TMPro.TMP_Text label;
+    public TMPro.TMP_Text label;
     
     [SerializeField]
     MeshRenderer meshRenderer;
     
-    DataMap map;
+    [HideInInspector]
+    public DataMap map;
     
     [HideInInspector]
-    public DatasetPrimitives.Trade baseTrade;
+    public DatasetPrimitives.Trade import;
+    
+    [HideInInspector]
+    public DatasetPrimitives.Trade export;
+    
+    [SerializeField]
+    MarkerInfo markerInfoPrefab;
 
     void Update()
     {
@@ -35,7 +41,8 @@ public class Marker : MonoBehaviour
         );
         
         this.map = map;
-        baseTrade = trade;
+        
+        AddTrade(trade);
         
         label.text = trade.reporterName;
         label.enabled = false;
@@ -47,6 +54,15 @@ public class Marker : MonoBehaviour
         }
     }
     
+    public void AddTrade(DatasetPrimitives.Trade trade)
+    {        
+        if (trade.indicator == DatasetPrimitives.Indicator.Import) {
+            import = trade;
+        } else {
+            export = trade;
+        }        
+    }
+    
     public void ShowLabel() 
     {
         label.enabled = true;
@@ -55,6 +71,13 @@ public class Marker : MonoBehaviour
     public void HideLabel() 
     {
         label.enabled = false;
+    }
+    
+    public void ShowInfo()
+    {
+        MarkerInfo markerInfo = Instantiate(markerInfoPrefab, transform);
+        
+        markerInfo.Configure(this);
     }
     
     public void SelectImport() 
