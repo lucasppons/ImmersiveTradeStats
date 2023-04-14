@@ -26,6 +26,14 @@ public class Marker : MonoBehaviour
     
     public void Configure(DataMap map, DatasetPrimitives.Trade trade) 
     {
+        transform.localPosition = map.MarkerPosition(DatasetPrimitives.coords[trade.reporter]);
+        
+        transform.localScale = new Vector3(
+            transform.localScale.x / map.transform.localScale.x,
+            transform.localScale.y / map.transform.localScale.y,
+            transform.localScale.z / map.transform.localScale.z
+        );
+        
         this.map = map;
         baseTrade = trade;
         

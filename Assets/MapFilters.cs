@@ -14,6 +14,12 @@ public class MapFilters : MonoBehaviour
     [SerializeField]
     PinchSlider yearSlider;
     
+    [SerializeField]
+    Flat flatPrefab;
+    
+    [SerializeField]
+    Globe globePrefab;
+    
     DataMap map = null;
     
     DatasetPrimitives.Product product = DatasetPrimitives.Product.All;
@@ -57,6 +63,32 @@ public class MapFilters : MonoBehaviour
         map.ApplyFilters(product, year);
         
         Close();
+    }
+    
+    public void DuplicateMap()
+    {
+        DataMap newMap = (DataMap) Instantiate(
+            (map is Flat) ? flatPrefab : globePrefab, 
+            Camera.main.transform.position + (Quaternion.AngleAxis(45.0f, Vector3.up) * (map.transform.position - Camera.main.transform.position)), 
+            map.transform.rotation
+        );
+        
+        newMap.transform.Rotate(0.0f, 45.0f, 0.0f, Space.World);
+        
+        List<DatasetPrimitives.Trade> trades = new List<DatasetPrimitives.Trade>();
+        
+        foreach (TradeArc arc in map.arcs) {
+            trades.Add(arc.trade);
+        }
+        
+        newMap.ApplyFilters(map.product, map.year);
+        newMap.AddTrades(trades);
+    }
+    
+    public void DeleteMap()
+    {
+        Destroy(map.gameObject);
+        Destroy(gameObject);
     }
     
     public void Open(DataMap map, DatasetPrimitives.Product product = DatasetPrimitives.Product.All, int year = 2004)

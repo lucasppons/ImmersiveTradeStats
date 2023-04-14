@@ -14,7 +14,7 @@ public class Flat : DataMap
     
     public override Vector3 ArcOutDirection(Vector3 from, Vector3 to)
     {
-        return new Vector3(0.0f, 1.0f, 0.0f);
+        return Vector3.up;
     }
     
     public override float ArcHeight()

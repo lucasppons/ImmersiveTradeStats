@@ -19,11 +19,21 @@ public class TradeArcNode : MonoBehaviour
         }
     }
     
-    public void Configure(TradeArc arc) 
+    public void Configure(TradeArc arc, Vector3 position) 
     {
+        transform.localPosition = position;
+        
+        transform.localScale = new Vector3(
+            transform.localScale.x / arc.map.transform.localScale.x,
+            transform.localScale.y / arc.map.transform.localScale.y,
+            transform.localScale.z / arc.map.transform.localScale.z
+        );
+        
         this.arc = arc;
         
-        label.text = arc.trade.value.ToString();
+        string valueText = arc.trade.value.ToString("0,0.00");
+        
+        label.text = $"{valueText} K$";
         label.enabled = false;
     }
     

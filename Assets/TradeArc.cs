@@ -10,7 +10,8 @@ public class TradeArc : MonoBehaviour
     [SerializeField]
     LineRenderer lineRenderer;
     
-    DataMap map;
+    [HideInInspector]
+    public DataMap map;
     
     [HideInInspector]
     public DatasetPrimitives.Trade trade;
@@ -19,8 +20,7 @@ public class TradeArc : MonoBehaviour
     public TradeArcNode node;
     
     public void Configure(DataMap map, DatasetPrimitives.Trade trade)
-    {
-        
+    {        
         Vector3 from = map.MarkerPosition(DatasetPrimitives.coords[trade.reporter]);
         Vector3 to = map.MarkerPosition(DatasetPrimitives.coords[trade.partner]);
         
@@ -33,11 +33,11 @@ public class TradeArc : MonoBehaviour
         if (trade.indicator == DatasetPrimitives.Indicator.Import) {
             startColor = Color.green;
             
-            outDirection = Quaternion.AngleAxis(15, from - to) * outDirection;
+            outDirection = Quaternion.AngleAxis(10, from - to) * outDirection;
         } else {
             endColor = Color.red;
             
-            outDirection = Quaternion.AngleAxis(45, from - to) * outDirection;
+            outDirection = Quaternion.AngleAxis(30, from - to) * outDirection;
         }
         
         Vector3[] points = new Vector3[11];
@@ -58,15 +58,7 @@ public class TradeArc : MonoBehaviour
         
         node = Instantiate(nodePrefab, map.transform);
         
-        node.Configure(this);
-        
-        node.transform.localPosition = points[5];
-        
-        node.transform.localScale = new Vector3(
-            node.transform.localScale.x / map.transform.localScale.x,
-            node.transform.localScale.y / map.transform.localScale.y,
-            node.transform.localScale.z / map.transform.localScale.z
-        );
+        node.Configure(this, points[5]);
     }
     
     public void SetWidth(float width)

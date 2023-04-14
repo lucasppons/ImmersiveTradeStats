@@ -13,13 +13,17 @@ public abstract class DataMap : MonoBehaviour
     [SerializeField]
     MapFilters filtersPrefab;
     
-    DatasetPrimitives.Product product = DatasetPrimitives.Product.All;
+    [HideInInspector]
+    public DatasetPrimitives.Product product = DatasetPrimitives.Product.All;
     
-    int year = 2004;
+    [HideInInspector]
+    public int year = 2004;
     
-    List<Marker> markers = new List<Marker>();
+    [HideInInspector]
+    public List<Marker> markers = new List<Marker>();
     
-    List<TradeArc> arcs = new List<TradeArc>();
+    [HideInInspector]
+    public List<TradeArc> arcs = new List<TradeArc>();
     
     Vector3 scale = new Vector3(1.0f, 1.0f, 1.0f);
     
@@ -73,6 +77,10 @@ public abstract class DataMap : MonoBehaviour
     
     public void ApplyFilters(DatasetPrimitives.Product product, int year)
     {
+        if (product == DatasetPrimitives.Product.All) return;
+        
+        if ((product == this.product) && (year == this.year)) return;
+        
         foreach (Marker marker in markers) {
             Destroy(marker.gameObject);
         }
@@ -103,6 +111,14 @@ public abstract class DataMap : MonoBehaviour
         minValue = float.PositiveInfinity;
         maxValue = float.NegativeInfinity;
         
+        AddTrades(trades);
+        
+        this.product = product;
+        this.year = year;
+    }
+    
+    public void AddTrades(List<DatasetPrimitives.Trade> trades)
+    {
         foreach (DatasetPrimitives.Trade trade in trades) {
             DatasetParser.TradeQuery arcQuery = new DatasetParser.TradeQuery(
                 trade.reporter,
@@ -113,10 +129,7 @@ public abstract class DataMap : MonoBehaviour
             );
             
             StartCoroutine(DatasetParser.QueryAPI(arcQuery, AddArcs));
-        }
-        
-        this.product = product;
-        this.year = year;
+        }        
     }
     
     public abstract Vector3 FiltersPosition();
@@ -127,14 +140,6 @@ public abstract class DataMap : MonoBehaviour
             Marker marker = Instantiate(markerPrefab, transform);
             
             marker.Configure(this, trade);
-            
-            marker.transform.localPosition = MarkerPosition(DatasetPrimitives.coords[trade.reporter]);
-            
-            marker.transform.localScale = new Vector3(
-                marker.transform.localScale.x / transform.localScale.x,
-                marker.transform.localScale.y / transform.localScale.y,
-                marker.transform.localScale.z / transform.localScale.z
-            );
             
             markers.Add(marker);
         }
